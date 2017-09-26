@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="filemanager.FXMLMainFormController">
+    <children>
+        <MenuBar fx:id="mnBar">
+            <menus>
+                <Menu fx:id="subMnFile" mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="ssMnNew" mnemonicParsing="false" onAction="#makeNew" text="New"/>
+                        <MenuItem fx:id="ssMnOpenSelected" mnemonicParsing="false" onAction="#openSelected"
+                                  text="Open selected"/>
+                        <MenuItem fx:id="ssmnOpen" mnemonicParsing="false" onAction="#openFolder" text="Open file"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem fx:id="ssMnSaveAs" mnemonicParsing="false" onAction="#saveAs" text="Save As…"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem fx:id="ssMnPreferences" mnemonicParsing="false" onAction="#preferences"
+                                  text="Preferences…"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem fx:id="ssMnQuit" mnemonicParsing="false" onAction="#quitApp" text="Quit"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="subMnEdit" mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem fx:id="ssMnEditCut" mnemonicParsing="false" onAction="#cut" text="Cut"/>
+                        <MenuItem fx:id="ssMnEditCopy" mnemonicParsing="false" onAction="#copy" text="Copy"/>
+                        <MenuItem fx:id="ssMnEditPaste" mnemonicParsing="false" onAction="#paste" text="Paste"/>
+                        <MenuItem fx:id="ssMnEditDel" mnemonicParsing="false" onAction="#delete" text="Delete"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem fx:id="ssMnEditSelAll" mnemonicParsing="false" onAction="#selectAll"
+                                  text="Select All"/>
+                        <MenuItem fx:id="ssMnEditUnSelAll" mnemonicParsing="false" onAction="#unselectAll"
+                                  text="Unselect All"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="subMnHelp" mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem fx:id="ssMnHelp" mnemonicParsing="false" onAction="#helpAbout"
+                                  text="About MyHelloApp"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0"
+                   prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <items>
+                <AnchorPane maxWidth="400.0">
+                    <children>
+                        <TreeView fx:id="tvLeft" layoutX="8.0" layoutY="26.0" maxWidth="400.0" minHeight="300.0"
+                                  minWidth="200.0" prefHeight="518.0" prefWidth="212.0" AnchorPane.bottomAnchor="0.0"
+                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0"/>
+                        <MenuButton fx:id="mnBtn" alignment="CENTER" layoutX="8.0" layoutY="3.0" mnemonicParsing="false"
+                                    onAction="#dropDisks" prefHeight="25.0" prefWidth="215.0" text="Check drive"
+                                    textFill="#2a2c90" wrapText="true" AnchorPane.leftAnchor="0.0"
+                                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <font>
+                                <Font name="Bell MT Bold" size="14.0"/>
+                            </font>
+                        </MenuButton>
+                    </children>
+                </AnchorPane>
+                <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="200.0" minWidth="200.0" prefHeight="567.0"
+                            prefWidth="399.0">
+                    <content>
+                        <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="574.0" prefWidth="443.0">
+                            <children>
+                                <TableView fx:id="tblVCenter" editable="true" minWidth="300.0"
+                                           onContextMenuRequested="#tblViewCntxtMnRequest"
+                                           onMouseClicked="#tblViewElementMouseClicked" prefHeight="200.0"
+                                           prefWidth="200.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0"
+                                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                           AnchorPane.topAnchor="0.0">
+                                    <columns>
+                                        <TableColumn fx:id="tblViewClmnFileName" maxWidth="400.0" minWidth="150.0"
+                                                     prefWidth="150.0" text="File name"/>
+                                        <TableColumn fx:id="tblViewClmnFileExt" maxWidth="85.0" minWidth="75.0"
+                                                     prefWidth="75.0" text="Extension"/>
+                                        <TableColumn fx:id="tblViewClmnFileSize" maxWidth="130.0" minWidth="100.0"
+                                                     prefWidth="100.0" text="Size kB"/>
+                                        <TableColumn fx:id="tblViewClmnFileLastMod" maxWidth="205.0" minWidth="105.0"
+                                                     prefWidth="105.0" text="last modification"/>
+                                    </columns>
+                                    <contextMenu>
+                                        <ContextMenu>
+                                            <items>
+                                                <MenuItem fx:id="cntxtMn" mnemonicParsing="false"
+                                                          onAction="#openSelected" text="Open"/>
+                                            </items>
+                                        </ContextMenu>
+                                    </contextMenu>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </ScrollPane>
+                <AnchorPane maxWidth="250.0" minWidth="200.0">
+                    <children>
+                        <TextArea fx:id="txtAreaLeft" editable="false" layoutY="361.0" maxWidth="250.0"
+                                  minHeight="200.0" minWidth="200.0" prefHeight="212.0" prefWidth="221.0"
+                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                  AnchorPane.topAnchor="361.0">
+                        </TextArea>
+                        <ProgressIndicator fx:id="prgrsNdctr" layoutX="-1.0" layoutY="252.0" prefHeight="108.0"
+                                           prefWidth="222.0" progress="0.0"/>
+                        <MediaView fx:id="mdaVw" fitHeight="200.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0"
+                                   onError="#onErrAct" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="11.0"
+                                   AnchorPane.topAnchor="14.0"/>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</VBox>

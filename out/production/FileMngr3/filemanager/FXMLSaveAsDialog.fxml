@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="filemanager.FXMLSaveAsController">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="3.0" prefHeight="137.0" prefWidth="434.0">
+         <children>
+            <Button fx:id="svDlgBtnSave" layoutX="374.0" layoutY="89.0" mnemonicParsing="false" onAction="#btnSaveFile" text="Save" />
+            <Button fx:id="svDlgBtnCancel" cancelButton="true" layoutX="283.0" layoutY="89.0" mnemonicParsing="false" onAction="#btnCancelSave" text="Cancel" />
+            <TextField fx:id="svDlgTxtFld" layoutX="7.0" layoutY="45.0" prefHeight="25.0" prefWidth="409.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
